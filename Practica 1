@@ -1,0 +1,54 @@
+########################### Dia 1 ###########################
+a <- 4
+b <- 3
+a + b
+suma <- a + b
+a > b  # a ¿Es mayor que b?
+a <= b 
+a == 4
+x <- abs(-2.5) ##abs es la funcion del valor absoluto
+x
+help(abs)
+#pedir ayuda en R
+
+
+## para asignar valores a variables en R se usa una <-
+x <- "hola" #### variable tipo caracter
+z <- 6  #el igual solo funciona en una sola direccion 
+### En este curso los objetos variables  que se utilizan son de caracter y numerico
+ciudad <- "Toluca" # una entrada
+nombres <- c("karla","Rodrigo","Miguel","Samuel") # carcater
+edad <- c(28,17,49,31) # numerico y 4 entradas
+## se utiliza la funcion class para preguntarle a r que tipo 
+class(nombres) #### tipo de variable
+class(edad)
+
+
+base1 <- data.frame(nombres,edad) ## se crea una base de datos
+View(base1) ### ver la base de datos
+ls(base1) ### ver lista de variables de base 1
+
+base1$edad ### para conocer los datos de la variable edad de la base1
+
+### Crear una variable de nombre sexo con 4 entradas donde hombre es 1
+### y mujer es el valor 2, la primera entrada es mujer y las otras 3 son hombre
+
+sexo <- c(2,1,1,1)
+
+### crear una nueva base llamada base 2 con 3 variables, nombres, edad y sexo
+base2 <- data.frame(nombres,edad,sexo)
+table(base2$sexo)
+table(base2$edad)
+
+
+
+palumnos <- c(40,120,60,80) ## alumnos facultad de economia
+etiq <- c("Actuaria","Economía","RI","Negocios")
+help(pie)
+
+pie(palumnos)
+pie(palumnos,etiq)
+pie(palumnos,etiq,main = "Grafica de pie de la facultad de economía",
+                       sub = "Fuente: Facultad de Economía",
+                        col = c("chartreuse","brown1","darkorange1","darkturquoise"),
+                         radius = 1.0, clockwise = TRUE, lty =2)
