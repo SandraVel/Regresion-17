@@ -1,0 +1,81 @@
+#Problema 17
+
+x<-c(99.0,101.1,102.7,103.0,105.4,107.0,108.7,110.8,112.1,112.4,113.6,113.8,115.1,115.4,120.0) #x=peso unitario (por pie cúbico) en muestras de concreto
+y<-c(28.8,27.9,27.0,25.2,22.8,21.5,20.9,19.6,17.1,18.9,16.0,16.7,13.0,13.6,10.8) #y=porosidad(%)
+     
+mediax<-mean(x)
+mediay<-mean(y)
+sumax<-sum(x)
+sumay<-sum(y)
+sumaxy<-sum(x*y)
+sumaxc<-sum(x^2)
+sxy<-sumaxy-((sumax*sumay)/length(x))
+sxx<-sumaxc-(sumax^2/length(x))
+B1<-sxy/sxx
+B0<-mediay-(B1*mediax)
+Ecu<-B0+B1*x
+Rsd<-y-Ecu
+SSE<-sum(Rsd^2)
+s2<-SSE/(length(x)-2)
+SST<-sum((y-mediay)^2)
+r2<-1-SSE/SST
+     
+#a)
+#y=118.909917-0.904731(x)
+datos<-data.frame(x,y)
+plot(datos[,1], datos[,2], main="Diagrama de Dispersión",xlab = "Peso unitario (por pie cúbico) en muestras de concreto",ylab = "Porosidad (%)")
+abline(lm(datos[,2]~datos[,1]), col="orange")
+#En este caso podemos ver que en la gráfica de dispersión, que la recta de regresión se a cerca a los valores por lo tanto puede explicra gran parte de la variacion.
+#b) 
+#por cada pie cúbico en muestras de concreto que aumenta, la porosidad disminuye en 0.9047.
+#c)
+B0+B1*(135)
+# Es igual a -3.228722 por lo tanto no es buena idea ya que la pororsidad no es suficiente para el peso que se desea estimar.
+#d)
+Rsd[c(1,2)]
+#res1=-0.5415817
+#res2=0.4583527
+#e)
+sqrt(s2)
+#s=0.9380352
+#Interpretando este dato quiere decir que en nuestro modelo de regresion existe poca dispersión de los datos.
+#f)
+r2
+# r^2=0.973887
+#En este problema r cuadrada se interpreta como 97.3% de la variacion observada en el peso unitario (por pie cúbico) en muestras de concreto con la porosidad.
+##########################################################################     
+
+#Problema 18
+x<-c(112.3,97.0,92.7,86.0,102.0,99.2,95.8,103.5,89.0,86.7) ##x=esfuerzo cúbico (Mpa)
+y<-c(75.0,71.0,57.7,48.7,74.3,73.3,68.0,59.3,57.8,48.5) #y=esfuerzo axial (MPa)
+     
+mdiax<-mean(x)
+mdiay<-mean(y)
+sumaax<-sum(x)
+sumaay<-sum(y)
+sumxaay<-sum(x*y)
+sumaaxc<-sum(x^2)
+Sxy<-sumaaxy-((sumaax*sumaay)/length(x))
+Sxx<-sumaaxc-(sumaax^2/length(x))
+B1<-Sxy/Sxx
+B0<-mdiay-(B1*mdiax)
+Ec<-B0+B1*x
+Rsdo<-y-v
+SSE<-sum(Rsdo^2)
+s2<-SSE/(length(x)-2)
+SST<-sum((y-mdiay)^2)
+     
+datos<-data.frame(x,y)
+plot(datos[,1], datos[,2], main="Diagrama de Dispersión",xlab = "Esfuerzo cúbico (Mpa)", ylab = "Esfuerzo axial (MPa)")
+abline(lm(datos[,2]~datos[,1]), col="red")
+#a)y=-31.803691+0.986970(x)
+#Por cada unidad que se incrementa el esfuerzo cúbico, el esfuerzo axial aumenta 0.986970.
+#b)
+r2<-1-SSE/SST
+#r^2=0.6300489
+#Elesfuerzo axial se puede atribuir al esfuerzo cúbico en un 63%
+#c)
+sqrt(s2)
+#s=6.624762
+#En este resultado se interpreta que la dispersión de los datos en torno a nuestro modelo de regresión es demasiada por lo tanto hay mayor variabildad.
+     
